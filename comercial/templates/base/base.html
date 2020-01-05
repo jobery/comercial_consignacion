@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% block extrastatic %}
+    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <title>{% block title %} Document {% endblock %}</title>
+</head>
+<body>
+    {% block header %}
+    {% endblock %}
+    <hr>
+    {% block content %}
+    {% endblock %} 
+    
+    {% block footer %}
+    {% endblock %}
+
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
+
+
+

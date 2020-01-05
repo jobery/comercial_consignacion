@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Crear tipo Articulo
+{% endblock %}
+{% block header %}
+<h1>Crear Tipo de Articulo</h1>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Registar Tipo Articulo</div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+</div>
+    {% endblock %}
