@@ -8,7 +8,7 @@ class TipoArticulo(models.Model):
     class Meta():
         verbose_name = 'Tipo de Articulo'
         verbose_name_plural = 'Tipos de Articulos'
-        ordering = ['nombre']
+        ordering = ['id']
 
     def __str__(self):
         return self.nombre

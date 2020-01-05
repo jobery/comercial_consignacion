@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block title %}Eliminar Tipo Articulo{% endblock %}
+{% block header %}Confirmar Eliminacion{% endblock %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>¿ Esta Seguro de Eliminar el tipo de Articulo {{ object_list.nombre }} ?</h1>
+    <button type="submit">Eliminar</button>
+    <button><a href="{% url 'listartipoarticulo' %}">Cancelar</a></button>
+</form>
+{% endblock %}

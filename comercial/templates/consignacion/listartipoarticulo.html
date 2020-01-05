@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block title %}Lista Tipos de Articulos{% endblock %}
+{% block header %}
+<h1>Lista de Tipos de Articulos</h1>
+{% endblock %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Nombre</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tipoarticulo in object_list %}
+        <tr>
+            <td>{{ tipoarticulo.id }}</td>
+            <td>{{ tipoarticulo.nombre }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
