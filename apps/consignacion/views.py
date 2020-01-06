@@ -23,7 +23,7 @@ class ListTipoArticulo(ListView):
 class UpdateTipoArticulo(UpdateView):
     model = TipoArticulo
     form_class = TipoArticuloForm
-    template_name = 'consignacion/creartipoarticulo.html'
+    template_name = 'consignacion/editartipoarticulo.html'
     success_url = reverse_lazy('listartipoarticulo')
 
 class DeleteTipoArticulo(DeleteView):

@@ -1,14 +1,18 @@
 {% extends 'base/base.html' %}
 {% block title %}Lista Tipos de Articulos{% endblock %}
 {% block header %}
-<h1>Lista de Tipos de Articulos</h1>
+<h1 class="h1">Lista de Tipos de Articulos</h1>
 {% endblock %}
 {% block content %}
-<table>
-    <thead>
+<div class="btn-group-toggle" data-toggle="buttons">
+    <a class="btn btn-success" href="{% url 'creartipoarticulo' %}" role="button">Crear</a>
+</div>
+<table class="table">
+    <thead class="table-dark">
         <tr>
             <td>Id</td>
             <td>Nombre</td>
+            <td>Acciones</td>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +20,10 @@
         <tr>
             <td>{{ tipoarticulo.id }}</td>
             <td>{{ tipoarticulo.nombre }}</td>
+            <td>
+                <a class="btn btn-warning" href="{% url 'editartipoarticulo' tipoarticulo.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'eliminartipoarticulo' tipoarticulo.id %}" role="button">Eliminar</a>                           
+            </td>
         </tr>
         {% endfor %}
     </tbody>
