@@ -7,12 +7,15 @@ Crear Tipo Articulo
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="card border-warning card-register mx-auto mt-5">
+    <div class="card card-register mx-auto mt-5">
       <div class="card-header">Editar Tipo de Articulo</div>
         <div class="card-body">
             <form action="" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
+                {% csrf_token %}                
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class = "form-control" name="nombre" value = "{{ object.nombre }}" id="nombre" maxlength="45" >
+                </div>
                 <button type="submit" class="btn btn-warning">Actualizar</button>
                 <a class="btn btn-info" href="{% url 'listartipoarticulo' %}">Cancelar</a>
             </form>

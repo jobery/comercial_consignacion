@@ -9,4 +9,8 @@ urlpatterns = [
     path('listartipoarticulo/',ListTipoArticulo.as_view(),name='listartipoarticulo'),
     path('editartipoarticulo/<int:pk>',UpdateTipoArticulo.as_view(),name='editartipoarticulo'),
     path('eliminartipoarticulo/<int:pk>',DeleteTipoArticulo.as_view(),name='eliminartipoarticulo'),
+    path('listararticulo/',ListArticulo.as_view(),name='listararticulo'),
+    path('creararticulo/',CreateArticulo.as_view(),name='creararticulo'),
+    path('editararticulo/<int:pk>',UpdateArticulo.as_view(),name='editararticulo'),
+    path('eliminararticulo/<int:pk>',DeleteArticulo.as_view(),name='eliminararticulo'),
 ]

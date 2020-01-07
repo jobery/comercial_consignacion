@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% block title %}Lista Articulos{% endblock %}
+{% block header %}
+<h1 class="h1">Lista de Articulos</h1>
+{% endblock %}
+{% block content %}
+<div class="btn-group-toggle" data-toggle="buttons">
+    <a class="btn btn-success" href="{% url 'creararticulo' %}" role="button">Crear</a>
+</div>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <td>Id</td>
+            <td>Nombre</td>
+            <td>Tipo</td>
+            <td>Descripcion</td>
+            <td>Costo</td>
+            <td>Precio</td>
+            <td>Precio Cliente</td>
+            <td>Existencia</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for articulo in object_list %}
+        <tr>
+            <td>{{ articulo.id }}</td>
+            <td>{{ articulo.nombre }}</td>
+            <td>{{ articulo.TipoArticulo }}</td>
+            <td>{{ articulo.descripcion }}</td>
+            <td>{{ articulo.costo }}</td>
+            <td>{{ articulo.precio }}</td>
+            <td>{{ articulo.precio_cliente }}</td>
+            <td>{{ articulo.existencia }}</td>
+            <td>
+                <a class="btn btn-warning" href="{% url 'editararticulo' articulo.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'eliminararticulo' articulo.id %}" role="button">Eliminar</a>                           
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

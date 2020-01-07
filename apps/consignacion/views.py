@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import CreateView,UpdateView,DeleteView,ListView
 from django.urls import reverse_lazy
 
-from .models import TipoArticulo
-from .forms import TipoArticuloForm
+from .models import *
+from .forms import *
 
 # Create your views here.
 def index(request):
@@ -31,6 +31,28 @@ class DeleteTipoArticulo(DeleteView):
     form_class = TipoArticuloForm
     template_name = 'consignacion/eliminartipoarticulo.html'
     success_url = reverse_lazy('listartipoarticulo')
+
+class ListArticulo(ListView):
+    model = Articulo
+    template_name = 'consignacion/listararticulo.html'
+
+class CreateArticulo(CreateView):
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'consignacion/creararticulo.html'
+    success_url = reverse_lazy('listararticulo')
+
+class UpdateArticulo(UpdateView):
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'consignacion/editararticulo.html'
+    success_url = reverse_lazy('listararticulo')
+
+class DeleteArticulo(DeleteView):   
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'consignacion/eliminararticulo.html'
+    success_url = reverse_lazy('listararticulo')
 
 
 def CrearTipoArticulo(request):

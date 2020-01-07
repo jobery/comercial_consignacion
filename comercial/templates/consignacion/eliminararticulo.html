@@ -1,18 +1,18 @@
 {% extends 'base/base.html' %}
-{% block title %}Eliminar Tipo Articulo{% endblock %}
+{% block title %}Eliminar Articulo{% endblock %}
 {% block header %}<h1 class="h1">Confirmar Eliminacion</h1>{% endblock %}
 {% block content %}
 <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Eliminar Tipo de Articulo</div>
+      <div class="card-header">Eliminar Articulo</div>
         <div class="card-body">
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                  <label for="confirmaeliminacion">¿ Esta Seguro de Eliminar el tipo de Articulo {{ object.nombre }} ?</label>
+                  <label for="confirmaeliminacion">¿ Esta Seguro de Eliminar el Articulo {{ object.nombre }} ?</label>
                 </div>
                 <button type="submit" class="btn btn-danger">Eliminar</button>
-                <a class="btn btn-info" href="{% url 'listartipoarticulo' %}">Cancelar</a>
+                <a class="btn btn-info" href="{% url 'listararticulo' %}">Cancelar</a>
               </form>
         </div>
     </div>

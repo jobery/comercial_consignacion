@@ -20,7 +20,7 @@ class Articulo(models.Model):
     costo = models.DecimalField("Costo",max_digits = 12,decimal_places = 2,blank = False,null = True)
     precio = models.DecimalField("Precio",max_digits = 12,decimal_places = 2,blank = False,null = True)
     precio_cliente = models.DecimalField("Precio Cliente",max_digits = 12,decimal_places = 2,blank = False,null = True)
-    existencia = models.IntegerField("Existencia")
+    existencia = models.IntegerField("Existencia",default = 0)
 
     class Meta():
         verbose_name = 'Articulo'    

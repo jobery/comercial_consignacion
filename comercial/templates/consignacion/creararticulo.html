@@ -1,23 +1,20 @@
 {% extends 'base/base.html' %}
 {% block title %}
-Crear Tipo Articulo
+Crear Articulo
 {% endblock %}
 {% block header %}
-<h1 class="h1">Tipo de Articulo</h1>
+<h1 class="h1">Articulo</h1>
 {% endblock %}
 {% block content %}
 <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Crear Tipo de Articulo</div>
+      <div class="card-header">Crear Articulo</div>
         <div class="card-body">
             <form action="" method="post">
                 {% csrf_token %}                
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" class = "form-control" name="nombre" id="nombre">
-                </div>
+                {{ form.as_p }}
                 <button type="submit" class="btn btn-success">Crear</button>
-                <a class="btn btn-info" href="{% url 'listartipoarticulo' %}">Cancelar</a>
+                <a class="btn btn-info" href="{% url 'listararticulo' %}">Cancelar</a>
             </form>
         </div>
     </div>
