@@ -13,46 +13,68 @@ def index(request):
 class CreateTipoArticulo(CreateView):
     model = TipoArticulo
     form_class = TipoArticuloForm
-    template_name = 'consignacion/creartipoarticulo.html'
+    template_name = 'tipoarticulo/creartipoarticulo.html'
     success_url = reverse_lazy('listartipoarticulo')
 
 class ListTipoArticulo(ListView):
     model = TipoArticulo
-    template_name = 'consignacion/listartipoarticulo.html'
+    template_name = 'tipoarticulo/listartipoarticulo.html'
 
 class UpdateTipoArticulo(UpdateView):
     model = TipoArticulo
     form_class = TipoArticuloForm
-    template_name = 'consignacion/editartipoarticulo.html'
+    template_name = 'tipoarticulo/editartipoarticulo.html'
     success_url = reverse_lazy('listartipoarticulo')
 
 class DeleteTipoArticulo(DeleteView):
     model = TipoArticulo
     form_class = TipoArticuloForm
-    template_name = 'consignacion/eliminartipoarticulo.html'
+    template_name = 'tipoarticulo/eliminartipoarticulo.html'
     success_url = reverse_lazy('listartipoarticulo')
 
 class ListArticulo(ListView):
     model = Articulo
-    template_name = 'consignacion/listararticulo.html'
+    template_name = 'articulo/listararticulo.html'
 
 class CreateArticulo(CreateView):
     model = Articulo
     form_class = ArticuloForm
-    template_name = 'consignacion/creararticulo.html'
+    template_name = 'articulo/creararticulo.html'
     success_url = reverse_lazy('listararticulo')
 
 class UpdateArticulo(UpdateView):
     model = Articulo
     form_class = ArticuloForm
-    template_name = 'consignacion/editararticulo.html'
+    template_name = 'articulo/editararticulo.html'
     success_url = reverse_lazy('listararticulo')
 
 class DeleteArticulo(DeleteView):   
     model = Articulo
     form_class = ArticuloForm
-    template_name = 'consignacion/eliminararticulo.html'
+    template_name = 'articulo/eliminararticulo.html'
     success_url = reverse_lazy('listararticulo')
+
+class ListVendedor(ListView):
+    model = Vendedor
+    template_name = 'vendedor/listarvendedor.html'
+
+class CreateVendedor(CreateView):
+    model = Vendedor
+    form_class = VendedorForm
+    template_name = 'vendedor/crearvendedor.html'
+    success_url = reverse_lazy('listarvendedor')
+
+class UpdateVendedor(UpdateView):
+    model = Vendedor
+    form_class = VendedorForm
+    template_name = 'vendedor/editarvendedor.html'
+    success_url = reverse_lazy('listarvendedor')
+
+class DeleteVendedor(DeleteView):
+    model =  Vendedor
+    form_class = VendedorForm
+    template_name = 'vendedor/eliminarvendedor.html'
+    success_url = reverse_lazy('listarvendedor')
 
 
 def CrearTipoArticulo(request):
