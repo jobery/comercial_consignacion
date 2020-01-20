@@ -46,6 +46,32 @@ class VendedorForm(forms.ModelForm):
             'email' : forms.EmailInput(attrs={'class':'form-control',}),            
         }
 
+class ConsignaForm(forms.ModelForm):
+    class Meta():
+        model = Consigna
+        fields = [
+            'vendedor',
+            'gestor',
+            'fecha',
+            'fecha_recibe',
+            'fecha_entrega',
+            'viatico',
+            'penalizacion',
+            'observacion',
+            'completa',
+        ]
+        widgets = {
+            'vendedor': forms.Select(attrs={'class':'form-control',}),
+            'gestor': forms.Select(attrs={'class':'form-control',}),
+            'fecha': forms.DateInput(attrs={'class':'form-control','type':'date',},format='%Y-%m-%d'),
+            'fecha_recibe':forms.DateInput(attrs={'class':'form-control','type':'date',},format='%Y-%m-%d'),
+            'fecha_entrega': forms.DateInput(attrs={'class':'form-control','type':'date',},format='%Y-%m-%d'),
+            'viatico': forms.NumberInput(attrs={'class':'form-contorl'}),
+            'penalizacion': forms.NumberInput(attrs={'class':'form-contorl'}),
+            'observacion': forms.Textarea(attrs={'class':'form-control',}),
+            'completa': forms.CheckboxInput(attrs={'class':'form-control',}),
+        }
+
 
 
 # '__all__'
