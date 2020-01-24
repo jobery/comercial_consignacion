@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% block title %}Eliminar Gestor{% endblock %}
+{% block header %}<h1 class="h1">Gestor</h1>{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Eliminar Gestor</div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="confirmaeliminacion">¿ Esta Seguro de Eliminar el Gestor {{ object.nombre }} ?</label>
+                </div>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <a class="btn btn-info" href="{% url 'listargestor' %}">Cancelar</a>
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

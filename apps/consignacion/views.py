@@ -76,6 +76,68 @@ class DeleteVendedor(DeleteView):
     template_name = 'vendedor/eliminarvendedor.html'
     success_url = reverse_lazy('listarvendedor')
 
+class ListGestor(ListView):
+    model = Gestor
+    template_name = 'gestor/listargestor.html'
+
+class CreateGestor(CreateView):
+    model = Gestor
+    form_class = GestorForm
+    template_name = 'gestor/creargestor.html'
+    success_url = reverse_lazy('listargestor')
+
+class UpdateGestor(UpdateView):
+    model = Gestor
+    form_class = GestorForm
+    template_name = 'gestor/editargestor.html'
+    success_url = reverse_lazy('listargestor')
+
+class DeleteGestor(DeleteView):
+    model = Gestor
+    form_class = GestorForm
+    template_name = 'gestor/eliminargestor.html'
+    success_url = reverse_lazy('listargestor')
+
+class ListConsigna(ListView):
+    model = Consigna
+    template_name = 'consigna/listarconsigna.html'
+
+class CreateConsigna(CreateView):
+    model = Consigna
+    form_class = ConsignaForm
+    template_name = 'consigna/crearconsigna.html'
+    success_url = reverse_lazy('listarconsigna')
+
+    def get(self,request,*args,**kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_consigna_formset = DetalleConsignaFormSet()
+        contexto = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_formset)
+        return self.render_to_response(contexto)
+
+    def post(self,request,*args,**kwargs):
+        #self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        detalle_consigna_form_set = DetalleConsignaFormSet(request.POST)
+        if form.is_valid() and detalle_consigna_form_set.is_valid():
+            return self.form_valid(form,detalle_consigna_form_set)
+        else:
+            return self.form_invalid(form,detalle_consigna_form_set)
+
+    def form_valid(self,form,detalle_consigna_form_set):        
+        self.object = form.save()
+        detalle_consigna_form_set.instance = self.object
+        detalle_consigna_form_set.save()
+        return HttpResponse(self.success_url)
+        
+    def form_invalid(self,form,detalle_consigna_form_set):
+        context = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_form_set)
+        return self.render_to_response(context)
+
+
+
 
 def CrearTipoArticulo(request):
     if request.method == 'POST':

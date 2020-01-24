@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Crear Consigna
+{% endblock %}
+{% block header %}
+<h1 class="h1">Consigna</h1>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Crear Consigna</div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}                
+                {{ form.as_p }}
+                {{ detalle_consigna_form_set.management_form }}
+                {% for detalles_consigna_form in detalle_consigna_form_set %}
+                                <div class="row">
+                                        <div class="col-lg-4">
+                                                <label>Articulo</label>
+                                                {% if detalles_consigna_form.articulo.errors %}
+                                                        {% for error in detalles_consigna_form.articulo.errors %}
+                                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <strong>Error: </strong> {{ error|escape }}
+                                                        </div>
+                                                        {% endfor %}
+                                                {% endif %}
+                                                {{ detalles_consigna_form.articulo }}
+                                        </div>
+                                        <div class="col-lg-4">
+                                                <label>Cantidad</label>
+                                                {% if detalles_consigna_form.cantidad.errors %}
+                                                        {% for error in detalles_consigna_form.cantidad.errors %}
+                                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <strong>Error: </strong> {{ error|escape }}
+                                                        </div>
+                                                        {% endfor %}
+                                                {% endif %}
+                                                {{ detalles_consigna_form.cantidad }}
+                                        </div>
+                                        <div class="col-lg-4">
+                                                <label>Precio</label>
+                                                {% if detalles_consigna_form.precio.errors %}
+                                                        {% for error in detalles_consigna_form.precio.errors %}
+                                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <strong>Error: </strong> {{ error|escape }}
+                                                        </div>
+                                                        {% endfor %}
+                                                {% endif %}
+                                                {{ detalles_consigna_form.precio }}
+                                        </div>
+                                </div>
+                        {% endfor %}
+                        <div class="col-lg-4">
+                            <br>
+                        </div>
+                <button type="submit" class="btn btn-success">Crear</button>
+                <a class="btn btn-info" href="{% url 'listarconsigna' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

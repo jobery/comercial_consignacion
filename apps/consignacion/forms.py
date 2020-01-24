@@ -46,6 +46,22 @@ class VendedorForm(forms.ModelForm):
             'email' : forms.EmailInput(attrs={'class':'form-control',}),            
         }
 
+class GestorForm(forms.ModelForm):
+    class Meta():
+        model = Gestor
+        fields = [
+            'nombre',
+            'dui',
+            'telefono',
+            'email',
+        ]
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class':'form-control',}),
+            'dui': forms.TextInput(attrs={'class':'form-control',}),
+            'telefono': forms.TextInput(attrs={'class':'form-control',}),
+            'email': forms.EmailInput(attrs={'class':'form-control',}),
+        }
+
 class ConsignaForm(forms.ModelForm):
     class Meta():
         model = Consigna
@@ -66,12 +82,45 @@ class ConsignaForm(forms.ModelForm):
             'fecha': forms.DateInput(attrs={'class':'form-control','type':'date',},format='%Y-%m-%d'),
             'fecha_recibe':forms.DateInput(attrs={'class':'form-control','type':'date',},format='%Y-%m-%d'),
             'fecha_entrega': forms.DateInput(attrs={'class':'form-control','type':'date',},format='%Y-%m-%d'),
-            'viatico': forms.NumberInput(attrs={'class':'form-contorl'}),
-            'penalizacion': forms.NumberInput(attrs={'class':'form-contorl'}),
+            'viatico': forms.NumberInput(attrs={'class':'form-control',}),
+            'penalizacion': forms.NumberInput(attrs={'class':'form-control',}),
             'observacion': forms.Textarea(attrs={'class':'form-control',}),
-            'completa': forms.CheckboxInput(attrs={'class':'form-control',}),
+            'completa': forms.CheckboxInput(attrs={'type':'checkbox',}),
         }
 
+class DetalleConsignaForm(forms.ModelForm):
+    class Meta():
+        model = DetalleConsigna
+        fields = [
+            'articulo',
+            'cantidad',
+            'precio',
+            'total',
+        ]
+        widgets = {
+            'articulo': forms.Select(attrs={'class':'form-control',}),
+            'cantidad': forms.NumberInput(attrs={'class':'form-control',}),
+            'precio': forms.NumberInput(attrs={'class':'form-control',}),
+            'total': forms.NumberInput(attrs={'class':'form-control',}),
+        }
+    
+    def clean_cantidad(self):
+        cantidad = self.cleaned_data['cantidad']
+        if cantidad == '':
+            raise forms.ValidationError('Especificar Cantidad')
+        return cantidad
 
+    def clean_precio(self):
+        precio = self.cleaned_data['precio']
+        if precio == '':
+            raise forms.ValidationError('Especifique Precio')
+        return precio
+    
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        cleaned_data['total'] = cleaned_data['cantidad'] * cleaned_data['precio']
+        return cleaned_data
+
+DetalleConsignaFormSet = forms.models.inlineformset_factory(Consigna, DetalleConsigna,form=DetalleConsignaForm,extra=5)
 
 # '__all__'

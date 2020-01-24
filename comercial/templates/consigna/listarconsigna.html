@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% block title %}Lista Consignas{% endblock %}
+{% block header %}
+<h1 class="h1">Lista de Consignas</h1>
+{% endblock %}
+{% block content %}
+<div class="btn-group-toggle" data-toggle="buttons">
+    <a class="btn btn-success" href="{% url 'crearconsigna' %}" role="button">Crear Consigna</a>
+</div>
+<table class="table table-striped table-sm">
+    <thead class="table-dark">
+        <tr>
+            <td>Id</td>
+            <td>Vendedor</td>         
+            <td>Gestor</td>
+            <td>Fecha</td>
+            <td>Recibe</td>            
+            <td>Entraga</td>
+            <td>Viatico</td> 
+            <td>Penalizacion</td>
+            <td>Observacion</td> 
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for consignas in object_list %}
+        <tr>
+            <td>{{ consignas.id }}</td>
+            <td>{{ consignas.vendedor.nombre }}</td>            
+            <td>{{ consignas.gestor.nombre }}</td>
+            <td>{{ consignas.fecha }}</td>
+            <td>{{ consignas.fecha_recibe }}</td>
+            <td>{{ consignas.fecha_entrega }}</td>
+            <td>{{ consignas.viatico }}</td>
+            <td>{{ consignas.penalizacion }}</td>
+            <td>{{ consignas.observacion }}</td>
+            <td>
+                          
+            </td> 
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td><h2 class="h2">No Existe Registros</h2></td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

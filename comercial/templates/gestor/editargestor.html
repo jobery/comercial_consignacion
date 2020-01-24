@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Editar Gestor
+{% endblock %}
+{% block header %}
+<h1 class="h1">Gestor</h1>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Editar Gestor</div>
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}                
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning">Actualizar</button>
+                <a class="btn btn-info" href="{% url 'listargestor' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

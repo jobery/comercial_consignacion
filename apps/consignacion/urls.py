@@ -16,5 +16,11 @@ urlpatterns = [
     path('listarvendedor/',ListVendedor.as_view(),name='listarvendedor'),
     path('crearvendedor/',CreateVendedor.as_view(),name='crearvendedor'),
     path('editarvendedor/<int:pk>',UpdateVendedor.as_view(),name='editarvendedor'),
-    path('eliminarvendedor/<int:pk>',DeleteVendedor.as_view(),name='eliminarvendedor'),    
+    path('eliminarvendedor/<int:pk>',DeleteVendedor.as_view(),name='eliminarvendedor'), 
+    path('listargestor/',ListGestor.as_view(),name='listargestor'),
+    path('creargestor/',CreateGestor.as_view(),name='creargestor'),
+    path('editargestor/<int:pk>',UpdateGestor.as_view(),name='editargestor'),
+    path('eliminargestor/<int:pk>',DeleteGestor.as_view(),name='eliminargestor'),     
+    path('listarconsigna/',ListConsigna.as_view(),name='listarconsigna'),
+    path('crearconsigna/',CreateConsigna.as_view(),name='crearconsigna'),
 ]

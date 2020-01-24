@@ -66,9 +66,9 @@ class Consigna(models.Model):
     fecha_recibe = models.DateField("Fecha Recibe",blank = True,null = True)
     fecha_entrega = models.DateField("Fecha Entrega",blank = True,null = True)    
     viatico = models.DecimalField("Viatico",max_digits = 12,decimal_places = 2,blank = False,null = True)
-    panalizacion = models.DecimalField("Penalizacion",max_digits = 12,decimal_places = 2,blank = False,null = True) 
+    penalizacion = models.DecimalField("Penalizacion",max_digits = 12,decimal_places = 2,blank = False,null = True) 
     observacion = models.TextField("Observaciones",blank = True,null = True)
-    completa = models.BooleanField("Consigna Completa")
+    completa = models.BooleanField("Completa")
 
     class Meta():
         verbose_name = 'Consigna'
