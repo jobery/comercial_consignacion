@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.views.generic import CreateView,UpdateView,DeleteView,ListView
 from django.urls import reverse_lazy
 
@@ -113,11 +113,9 @@ class CreateConsigna(CreateView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         detalle_consigna_formset = DetalleConsignaFormSet()
-        contexto = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_formset)
-        return self.render_to_response(contexto)
+        return self.render_to_response(self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_formset))
 
-    def post(self,request,*args,**kwargs):
-        #self.object = self.get_object()
+    def post(self,request,*args,**kwargs):  
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         detalle_consigna_form_set = DetalleConsignaFormSet(request.POST)
@@ -126,17 +124,60 @@ class CreateConsigna(CreateView):
         else:
             return self.form_invalid(form,detalle_consigna_form_set)
 
-    def form_valid(self,form,detalle_consigna_form_set):        
-        self.object = form.save()
+    def form_valid(self,form,detalle_consigna_form_set): 
+        self.object = None   
+        self.object = form.save()        
         detalle_consigna_form_set.instance = self.object
         detalle_consigna_form_set.save()
-        return HttpResponse(self.success_url)
+        return HttpResponseRedirect(self.success_url)
+
+    def form_invalid(self,form,detalle_consigna_form_set):  
+        contexto = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_form_set)
+        return self.render_to_response(contexto)
+
         
-    def form_invalid(self,form,detalle_consigna_form_set):
-        context = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_form_set)
-        return self.render_to_response(context)
+        
+    # def get(self,request,*args,**kwargs):
+    #     self.object = None
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     detalle_consigna_formset = DetalleConsignaFormSet()
+    #     contexto = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_formset)
+    #     return self.render_to_response(contexto)
 
+    # def post(self,request,*args,**kwargs):
+    #     #self.object = self.get_object()
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     detalle_consigna_form_set = DetalleConsignaFormSet(request.POST)
+    #     if form.is_valid() and detalle_consigna_form_set.is_valid():
+    #         return self.form_valid(form,detalle_consigna_form_set)
+    #     else:
+    #         return self.form_invalid(form,detalle_consigna_form_set)
 
+    # def form_valid(self,form,detalle_consigna_form_set):        
+    #     self.object = form.save()
+    #     detalle_consigna_form_set.instance = self.object
+    #     detalle_consigna_form_set.save()
+    #     return HttpResponse(self.success_url)
+        
+    # def form_invalid(self,form,detalle_consigna_form_set):
+    #     context = self.get_context_data(form=form,detalle_consigna_form_set=detalle_consigna_form_set)
+    #     return self.render_to_response(context)
+
+# def ConsignaDetalle(request,referencia):
+#     msr = Consigna.objects.get(id=referencia)
+#     detalle = DetalleConsigna.objects.filter(consigna=referencia)
+#     form = DetalleConsignaForm()
+#     formulariodetalle = inlineforset_factory(Consigna,DetalleConsigna,form=form,extra = 5)
+#     if request.method == 'POST':
+#         formset = DetalleConsigna(request.POST,instance = msr)
+#         if formset.is_valid():
+#             formset.save()
+#             return HttpResponse(reverse_lazy('listarconsigna'))
+#     else:
+#         formset = DetalleConsigna(instance = msr)
+#         return render(request,'consigna/crearconsigna.html',{'formset':formset,'Maestro':msr,'lineas':detalle})
 
 
 def CrearTipoArticulo(request):
